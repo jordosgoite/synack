@@ -104,6 +104,15 @@
   left: 30%;
   max-width: 500px;
   border: 1px solid #6abe6d;
+  background-color: #B3F0AB;
   padding: 30px;
+}
+.searching-msj{
+  color: #45a049;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: justify;
 }
 

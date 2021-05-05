@@ -1,9 +1,10 @@
-import { FETCH_FAILURE, FETCH_REQUEST, FETCH_SUCCESS } from "../actions/SearchActions";
+import { FETCH_FAILURE, FETCH_REQUEST, FETCH_SUCCESS, FETCH_ENGINE } from "../actions/SearchActions";
 
 const initialState = {
     loading: false,
     results: [],
-    error: ''
+    error: '',
+    searchEngine: ''
 }
 
 const Search =(state= initialState, action)=>{
@@ -25,6 +26,11 @@ const Search =(state= initialState, action)=>{
                 results: [],
                 error: action.payload
             } 
+        case FETCH_ENGINE:
+                return{
+                    ...state,
+                    searchEngine: action.payload
+                } 
         default:
             return state;
     }

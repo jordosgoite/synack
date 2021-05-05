@@ -3,6 +3,7 @@ import axios from "axios";
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
+export const FETCH_ENGINE = 'FETCH_ENGINE';
 
 export const fetchRequest = () =>{
     return {
@@ -22,7 +23,13 @@ export const fetchFailure = (error) =>{
         type: FETCH_FAILURE,
         payload: error
     }
-    
+}
+
+export const fetchSearchEngine = (engine) =>{
+    return {
+        type: FETCH_ENGINE,
+        payload: engine
+    }
 }
 
 const fetchData = (data)=>{
@@ -33,6 +40,7 @@ const fetchData = (data)=>{
             axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
             .then(result=>{
                 dispatch(fetchSuccess([result.data.items]))
+                dispatch(fetchSearchEngine(data.searchEngine))
             })
             .catch(error=>{
                 dispatch(fetchFailure('Error... check your Google credentials'))
@@ -42,13 +50,16 @@ const fetchData = (data)=>{
     else if(data.searchEngine==="bing") {
         return (dispatch) => {
             dispatch(fetchRequest());
-            axios.get(`https://api.bing.microsoft.com/v7.0/custom/search?q=${data.searchData}&customconfig=2bd8f57f-42a2-49ee-9a80-c9a923b01d23&mkt=en-US&count=50`,{
-                headers:{
-                    'Ocp-Apim-Subscription-Key': 'b2e8ee0c20be4aeba40366f2bb693e62'
+            axios.get(`https://bing-search.p.rapidapi.com/bing-serps/`,{
+                params: {q:data.searchData, page: '1'},
+                headers: {
+                    'x-rapidapi-key': 'fc3e4b500bmshf6c8c34a69b1cd7p141a5djsn56a0e26b7726',
+                    'x-rapidapi-host': 'bing-search.p.rapidapi.com'
                 }
             })
             .then(result=>{
-                dispatch(fetchSuccess([result.data.items]))
+               dispatch(fetchSuccess([result.data.data.results.organic]))
+               dispatch(fetchSearchEngine(data.searchEngine))
             })
             .catch(error=>{
                 dispatch(fetchFailure('Error... check your Microsoft credentials'))
@@ -59,15 +70,17 @@ const fetchData = (data)=>{
         return (dispatch) => {
             dispatch(fetchRequest());
             const googleData = axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
-            const bingData = axios.get(`https://api.bing.microsoft.com/v7.0/custom/search?q=${data.searchData}&customconfig=2bd8f57f-42a2-49ee-9a80-c9a923b01d23&mkt=en-US&count=50`,{
-                headers:{
-                    'Ocp-Apim-Subscription-Key': 'b2e8ee0c20be4aeba40366f2bb693e62'
+            const bingData = axios.get(`https://bing-search.p.rapidapi.com/bing-serps/`,{
+                params: {q:data.searchData, page: '1'},
+                headers: {
+                    'x-rapidapi-key': 'fc3e4b500bmshf6c8c34a69b1cd7p141a5djsn56a0e26b7726',
+                    'x-rapidapi-host': 'bing-search.p.rapidapi.com'
                 }
             })
             axios.all([googleData, bingData]).then(
                 axios.spread((...allData)=>{
-                    console.log(allData,"alldata")
                     dispatch(fetchSuccess([allData]))
+                    dispatch(fetchSearchEngine(data.searchEngine))
                 })
             )
             .catch(error=>{
