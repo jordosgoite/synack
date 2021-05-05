@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 50px 10px 10px 100px;
 }
 
 .App-logo {
@@ -36,3 +37,56 @@
     transform: rotate(360deg);
   }
 }
+/* --------------------------------------------------- */
+.search-menu{
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+.search-input{
+  width: 200px;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-select{
+  width: 200px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-button{
+  background-color: #6abe6d;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.search-button:hover{
+  background-color: #45a049;
+}
+.result-container{
+  max-width: 50%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: justify;
+}
+.result-container a{
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.result-container a .result-url{
+  font-size: 14px;
+  width: 250px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
