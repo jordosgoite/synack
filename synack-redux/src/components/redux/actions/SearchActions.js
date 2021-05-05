@@ -30,7 +30,7 @@ const fetchData = (data)=>{
     {
         return (dispatch) => {
             dispatch(fetchRequest());
-            axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data}`)
+            axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
             .then(result=>{
                 dispatch(fetchSuccess([result.data.items]))
             })
