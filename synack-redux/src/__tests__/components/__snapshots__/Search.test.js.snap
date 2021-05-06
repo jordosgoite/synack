@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React-Redux Search Component should render with given state from Redux store 1`] = `
+<div
+  className="search-menu"
+>
+  <input
+    className="search-input"
+    name="searchData"
+    onChange={[Function]}
+    placeholder="Search..."
+    type="text"
+  />
+  <select
+    className="search-select"
+    name="searchEngine"
+    onChange={[Function]}
+  >
+    <option
+      defaultValue=""
+    >
+      Choose Search Engine
+    </option>
+    <option
+      value="google"
+    >
+      Google
+    </option>
+    <option
+      value="bing"
+    >
+      Bing
+    </option>
+    <option
+      value="both"
+    >
+      Both
+    </option>
+  </select>
+  <button
+    className="search-button"
+    onClick={[Function]}
+  >
+    Search
+  </button>
+</div>
+`;

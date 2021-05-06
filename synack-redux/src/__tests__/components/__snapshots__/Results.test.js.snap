@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React-Redux Results Component should render with given state from Redux store 1`] = `
+<div>
+  <div
+    className="result-container"
+  >
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <span
+        className="result-url"
+      />
+      <span>
+        test
+      </span>
+    </a>
+    <p />
+  </div>
+  <div
+    className="result-container"
+  >
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <span
+        className="result-url"
+      />
+      <span />
+    </a>
+    <p>
+      test
+    </p>
+  </div>
+  <div
+    className="result-container"
+  >
+    <a
+      href="www.google.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <span
+        className="result-url"
+      >
+        www.google.com
+      </span>
+      <span />
+    </a>
+    <p />
+  </div>
+</div>
+`;
