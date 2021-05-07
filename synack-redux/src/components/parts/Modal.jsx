@@ -5,15 +5,15 @@ const Modal = (props) => (
   <div className="modal">
     <div className="modal-container">
       <h2>Please enter your query and select a search engine!</h2>
-      <button className="search-button" type="button" onClick={() => { props.modal(false); }}>Close</button>
+      <button className="search-button" type="button" onClick={() => { props.toggle(false); }}>Close</button>
     </div>
   </div>
 );
 Modal.propTypes = {
-  modal: PropTypes.bool,
+  toggle: PropTypes.func,
 };
 
 Modal.defaultProps = {
-  modal: true,
+  toggle: null,
 };
 export default Modal;

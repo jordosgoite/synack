@@ -51,7 +51,7 @@ const Search = () => {
         <option value="both">Both</option>
       </select>
       <button className="search-button" type="button" onClick={handleSubmit}>Search</button>
-      {modal ? <Modal modal={handleModal} /> : null}
+      {modal ? <Modal toggle={handleModal} /> : null}
     </div>
   );
 };
