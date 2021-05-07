@@ -35,38 +35,39 @@ export const fetchSearchEngine = (engine) =>{
 const fetchData = (data)=>{
     if (data.searchEngine==="google")
     {
-        return (dispatch) => {
+        return async (dispatch) => {
             dispatch(fetchRequest());
-            axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
-            .then(result=>{
-                dispatch(fetchSuccess([result.data.items]))
+            const response= await axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
+            try {
+                dispatch(fetchSuccess([response.data.items]))
                 dispatch(fetchSearchEngine(data.searchEngine))
-            })
-            .catch(error=>{
+            }
+            catch(error){
                 dispatch(fetchFailure('Error... check your Google credentials'))
-            })
+            }
         }
     }
     else if(data.searchEngine==="bing") {
-        return (dispatch) => {
+        return async (dispatch) => {
             dispatch(fetchRequest());
-            axios.get(`https://bing-search.p.rapidapi.com/bing-serps/`,{
+            const response = await axios.get(`https://bing-search.p.rapidapi.com/bing-serps/`,{
                 params: {q:data.searchData, page: '1'},
                 headers: {
                     'x-rapidapi-key': 'fc3e4b500bmshf6c8c34a69b1cd7p141a5djsn56a0e26b7726',
                     'x-rapidapi-host': 'bing-search.p.rapidapi.com'
                 }
             })
-            .then(result=>{
-               dispatch(fetchSuccess([result.data.data.results.organic]))
-               dispatch(fetchSearchEngine(data.searchEngine))
-            })
-            .catch(error=>{
+            try {
+                dispatch(fetchSuccess([response.data.data.results.organic]))
+                dispatch(fetchSearchEngine(data.searchEngine))
+            }
+            catch (error){
                 dispatch(fetchFailure('Error... check your Microsoft credentials'))
-            })
+            }
         }
     }   
     else {
+// ----------- keys should be store in environment variables (those were set to public for reviewing process------//
         return (dispatch) => {
             dispatch(fetchRequest());
             const googleData = axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAl7GTF0pyBdIxg7C22WbRUNJgNQCCSBIo&cx=2c2f9747b5a6688e6&q=${data.searchData}`)
