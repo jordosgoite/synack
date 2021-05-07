@@ -115,4 +115,22 @@
   justify-content: flex-start;
   text-align: justify;
 }
-
+/********* MOBILE STYLES *************/
+@media only screen and (max-width: 767px) and (min-width: 200px) {
+  .search-menu{
+    flex-direction: column;
+  }
+  .search-input{
+    margin-bottom: 10px;
+  }
+  .search-select{
+    margin-bottom: 10px;
+  }
+  .result-container a .result-url{
+    max-width: 210px;
+  }
+  .modal-container{
+    max-width: 200px;
+    left: 12%;
+  }
+}
