@@ -15,10 +15,22 @@ const Results = () => {
       {searchEngine === 'both'
         ? (
           <>
-            {/* eslint-disable-next-line max-len */}
-            {Search.results[0][0].data.items.map((element) => <Result key={element.title} title={element.title} descrip={element.snippet} url={element.link} />)}
-            {/* eslint-disable-next-line max-len */}
-            {Search.results[0][1].data.data.results.organic.map((element) => <Result key={element.title} title={element.title} descrip={element.description} url={element.url} />)}
+            {Search.results[0][0].data.items.map((element) => (
+              <Result
+                key={element.title}
+                title={element.title}
+                descrip={element.snippet}
+                url={element.link}
+              />
+            ))}
+            {Search.results[0][1].data.data.results.organic.map((element) => (
+              <Result
+                key={element.title}
+                title={element.title}
+                descrip={element.description}
+                url={element.url}
+              />
+            ))}
           </>
         )
         : null}
